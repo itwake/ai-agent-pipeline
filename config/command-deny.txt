@@ -1,0 +1,9 @@
+# Extra shell command deny patterns, one glob per line (matched against the
+# whitespace-normalised, lower-cased command line). The built-in defaults
+# already block force pushes, deploys, deletes, privilege escalation and
+# similar; this file is for site-specific additions. Lines starting with #
+# are ignored.
+#
+# Examples:
+#*curl *https://prod.internal*
+#*psql *drop *

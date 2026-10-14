@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Scripted dry run: checking the node, then asking one question.",
+    "tool_calls": [
+      {"name": "bash", "arguments": {"command": "uname -a && python3 --version && git --version", "description": "Show node basics"}},
+      {"name": "write_file", "arguments": {"path": "smoke/hello.txt", "content": "hello from the scripted provider\n"}}
+    ]
+  },
+  {
+    "tool_calls": [
+      {"name": "read_file", "arguments": {"path": "smoke/hello.txt"}}
+    ]
+  },
+  {
+    "tool_calls": [
+      {"name": "ask_user", "arguments": {"questions": [
+        {"question": "The scripted checks are done. How should this dry run finish?", "header": "Finish", "options": [
+          {"label": "report", "description": "Write the final report now"},
+          {"label": "extra", "description": "Run one more command first"}
+        ], "allow_custom": true}
+      ]}}
+    ]
+  },
+  {
+    "tool_calls": [
+      {"name": "bash", "arguments": {"command": "echo \"answer received, finishing\"", "description": "Acknowledge the answer"}}
+    ]
+  },
+  {
+    "text": "## Summary\nScripted dry run finished: the node was inspected, a file was written and read back, and a question went through Jenkins input.\n\n## Changes\nNone (no repository was touched).\n\n## Verification\nSee the tool calls above.\n\n## Open items\nNone"
+  }
+]
